@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mdx.mapper.ItemMapper">
+<!--    //根据商品名称查询-->
+<!--    List<Item> findByName(@Param("name") String name);-->
+    <select id="findByName" resultType="Item" parameterType="String">
+        select
+            id,name,price,production_date,description,pic,created
+        from
+            item
+        <where>
+            <if test="name != null and name != ''">
+                name like "%"#{name}"%"
+            </if>
+        </where>
+    </select>
+</mapper>
